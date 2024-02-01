@@ -17,6 +17,9 @@ const App = () => {
         const CAS = await fetch(url);
         const user = await CAS.json();
         setNewUser(user);
+        if (CAS.ok === false) {
+          setError(true);
+        }
       } catch (error) {
         setError(true);
         console.log(error);
@@ -49,7 +52,7 @@ const App = () => {
     <div>
       <p>{login}</p>
       <img style={stylesF} src={avatar_url} alt="" />
-      <a href={html_url}>profile</a>
+      <a href={html_url}>profile sur github</a>
       <p>{bio}</p>
     </div>
   );
