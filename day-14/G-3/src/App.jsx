@@ -38,6 +38,7 @@ const App = () => {
         <button onClick={() => changeC()} id="TheBTN">
           change me
         </button>
+        <SomeIN />
       </div>
     );
   } else {
@@ -60,5 +61,17 @@ const App = () => {
       </div>
     );
   }
+};
+const SomeIN = () => {
+  useEffect(() => {
+    console.log("hi im first");
+    const IDEo = setInterval(() => {
+      console.log("hi i don't know who i am");
+    }, 1000);
+    return () => {
+      clearInterval(IDEo);
+    };
+  }, []);
+  return <h2>hi there</h2>;
 };
 export default App;
