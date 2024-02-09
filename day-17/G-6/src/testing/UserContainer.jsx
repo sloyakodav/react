@@ -95,7 +95,7 @@ const UserContainer = () => {
   return (
     <div style={FLex}>
       <ul>
-        <li>hello there , {user.name}</li> 
+        <li>hello there , {user.name.toUpperCase()}</li> 
       </ul>
       <button onClick={() => setLog(!Log)} className="btn">
         log Out
