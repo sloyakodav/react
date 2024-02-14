@@ -8,14 +8,7 @@ import { data } from "../../../data.js";
 const defaultState = {
   people: data,
 };
-const reducerFunc = (state, action) => {
-  if (action.type === "CLEAR_LIST") {
-    return { ...state, people: [{ name: "brahim", id: "1" }] };
-  } else if (action.type === "RESET_ALL") {
-    return { ...state, people: data };
-  }
-  return state;
-};
+import reducerFunc from "./js/useReducer.js";
 function App() {
   const [state, dispatch] = useReducer(reducerFunc, defaultState);
   // dispatch({
@@ -24,7 +17,6 @@ function App() {
   // });
 
   // console.log(state);
-  // const [people, setPeople] = useState(data);
   const [onOff, setOnOff] = useState(false);
   const removeName = (valueToRemove) => {
     // const arrayT = people.filter((item) => item.id !== valueToRemove);
@@ -37,7 +29,10 @@ function App() {
   const resetAll = () => {
     dispatch({ type: "RESET_ALL", payload: data });
   };
-
+  const removePerson = (id) => {
+    const newData = state.people.filter((item) => item.id != id);
+    dispatch({ type: "REMOVE_ITEM", payload: { id } });
+  };
   console.log(state);
   return (
     <div>
@@ -48,8 +43,7 @@ function App() {
             <h3>{name}</h3>
             <button
               onClick={() => {
-                removeName(id);
-                console.log(people);
+                removePerson(id);
               }}
             >
               remove
